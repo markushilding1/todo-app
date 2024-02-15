@@ -42,7 +42,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,tsx,js}": "npm run style:all:fix -- --cache"
+    "*.{ts,tsx,js}": "npm run style:lint:fix"
   },
   "version": "1.0.0",
   "private": true,
