@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
 
+import { store } from './src/store';
 import Navigation from './src/navigation';
 
 export default function App() {
@@ -9,9 +11,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={styles.container}>
-        <Navigation colorScheme={colorScheme} />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Navigation colorScheme={colorScheme} />
+        </View>
+      </Provider>
     </SafeAreaProvider>
   );
 }
