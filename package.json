@@ -13,6 +13,8 @@
     "@types/react-native": "0.70.6",
     "eslint": "8.56.0",
     "eslint-plugin-prettier": "5.1.3",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
     "prettier": "3.2.5",
     "typescript": "5.1.3"
   },
@@ -20,7 +22,18 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "style:all:check": "npm run style:lint && npm run style:prettier:check",
+    "style:all:fix": "npm run style:lint:fix && npm run style:prettier:fix",
+    "style:lint": "eslint",
+    "style:lint:fix": "npm run style:lint -- --fix",
+    "style:prettier": "prettier '**/*.{ts,tsx,js}' --ignore-unknown",
+    "style:prettier:check": "npm run style:prettier -- --check",
+    "style:prettier:fix": "npm run style:prettier -- --write",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": "npm run style:all:fix -- --cache"
   },
   "version": "1.0.0",
   "private": true,
