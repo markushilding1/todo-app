@@ -38,9 +38,32 @@ export const todosApi = createApi({
         }
       },
     }),
+    deleteTodo: builder.mutation<void, number>({
+      query: id => ({
+        url: `todos/${id}`,
+        method: 'DELETE',
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const deleteResult = dispatch(
+          todosApi.util.updateQueryData('getTodos', undefined, draftTodos =>
+            draftTodos.filter(todo => todo.id !== id),
+          ),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          deleteResult.undo();
+        }
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTodosQuery, useUpdateTodoMutation } = todosApi;
+export const {
+  useGetTodosQuery,
+  useUpdateTodoMutation,
+  useDeleteTodoMutation,
+} = todosApi;
