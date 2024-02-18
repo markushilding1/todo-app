@@ -5,4 +5,12 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
   },
+  overrides: [
+    {
+      files: ['__tests__/**/*'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
