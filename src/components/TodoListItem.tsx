@@ -26,6 +26,7 @@ const TodoListItem = ({
   const listItemStyle = useAnimatedStyle(() => {
     return {
       width: '100%',
+      backgroundColor: colors.background,
       flexDirection: 'row',
       alignItems: 'center',
       borderTopWidth: 1,

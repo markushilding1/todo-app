@@ -4,8 +4,9 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 import useTodoListScreen from './TodoListScreen.hook';
 import TodoListItem from '../../components/TodoListItem';
 import withMarkTodoCompleted from '../../hocs/withMarkTodoCompleted';
+import withSwipeToDeleteTodo from '../../hocs/withSwipeToDeleteTodo';
 
-const Item = withMarkTodoCompleted(memo(TodoListItem));
+const Item = withSwipeToDeleteTodo(withMarkTodoCompleted(memo(TodoListItem)));
 
 const TodoListScreen = () => {
   const { data, fetchNextPage, isFetchingNextPage } = useTodoListScreen();
