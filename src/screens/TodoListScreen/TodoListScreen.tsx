@@ -3,6 +3,9 @@ import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import useTodoListScreen from './TodoListScreen.hook';
 import TodoListItem from '../../components/TodoListItem';
+import withMarkTodoCompleted from '../../hocs/withMarkTodoCompleted';
+
+const Item = withMarkTodoCompleted(TodoListItem);
 
 const TodoListScreen = () => {
   const { data, fetchNextPage, isFetchingNextPage } = useTodoListScreen();
@@ -11,13 +14,13 @@ const TodoListScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={data}
-        renderItem={({ item }) => <TodoListItem item={item} />}
+        renderItem={({ item }) => <Item item={item} />}
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={styles.flatList}
-        initialNumToRender={15}
+        initialNumToRender={20}
         onEndReached={fetchNextPage}
         ListFooterComponent={
-          isFetchingNextPage && <ActivityIndicator color="black" />
+          isFetchingNextPage ? <ActivityIndicator color="black" /> : undefined
         }
       />
     </View>

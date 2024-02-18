@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useListTodosQuery } from '../../services/todos';
+import { Todo, useGetTodosQuery } from '../../services/todos';
 
-const PER_PAGE = 10;
+const PER_PAGE = 20;
 
 const useTodoListScreen = () => {
   const [page, setPage] = useState(1);
-  const { data, error, isLoading } = useListTodosQuery(page);
-  const [pages, setPages] = useState([]);
+  const { data, error, isLoading } = useGetTodosQuery(); // page would go here as a parameter if we were using server side pagination.
+  const [pages, setPages] = useState<Todo[][]>();
   const [isFetchingNextPage, setIsFetchingNextPage] = useState(false);
 
   // Simluating server side pagination
