@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 import useTodoListScreen from './TodoListScreen.hook';
 import TodoListItem from '../../components/TodoListItem';
 import withMarkTodoCompleted from '../../hocs/withMarkTodoCompleted';
 
-const Item = withMarkTodoCompleted(TodoListItem);
+const Item = withMarkTodoCompleted(memo(TodoListItem));
 
 const TodoListScreen = () => {
   const { data, fetchNextPage, isFetchingNextPage } = useTodoListScreen();

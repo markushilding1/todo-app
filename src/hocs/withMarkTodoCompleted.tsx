@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Todo, useUpdateTodoMutation } from '../services/todos';
 
 export interface WithMarkTodoCompletedProps {
@@ -15,24 +15,29 @@ function withMarkTodoCompleted<
     const [isCompleted, setCompleted] = useState(item.completed);
     const [updateTodo, { isLoading: isUpdating }] = useUpdateTodoMutation();
 
-    const handleMarkCompleted = () => {
+    const handleMarkCompleted = useCallback(() => {
       const prevValue = isCompleted;
       setCompleted(!prevValue);
       updateTodo({ id: item.id, completed: !prevValue });
-    };
+    }, [isCompleted, item.id, updateTodo]);
 
     useEffect(() => {
       setCompleted(item.completed);
     }, [item]);
 
-    return (
-      <Component
-        {...(childProps as T)}
-        onMarkCompleted={handleMarkCompleted}
-        isCompleted={isCompleted}
-        isUpdating={isUpdating}
-      />
+    const memoizedComponent = React.useMemo(
+      () => (
+        <Component
+          {...(childProps as T)}
+          onMarkCompleted={handleMarkCompleted}
+          isCompleted={isCompleted}
+          isUpdating={isUpdating}
+        />
+      ),
+      [childProps, handleMarkCompleted, isCompleted, isUpdating],
     );
+
+    return memoizedComponent;
   };
 }
 
