@@ -32,7 +32,7 @@ function RootNavigator() {
       screenOptions={{ headerShown: true, headerShadowVisible: false }}>
       <Stack.Screen
         options={{
-          title: 'Todos',
+          title: 'Todo',
           headerLargeTitle: true,
           headerTintColor: colors.primary,
           headerLargeTitleStyle: { color: colors.primary },
