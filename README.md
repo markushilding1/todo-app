@@ -5,7 +5,14 @@
 - React Native
 - Expo
 
-## Run the app locally
+## Features
+- [x] Mark todo completed
+- [x] Pagination on list end reached
+- [x] Delete todo with swipe
+- [ ] Add todo
+- [ ] Sort todos  
+
+## Run the app locally with Expo Go
 
 To run this application locally Expo needs to be installed on your system.
 
@@ -31,3 +38,9 @@ $ npm run ios
 # start app on Android emulator
 $ npm run android
 ```
+
+## Screen recording
+
+
+https://github.com/markushilding1/todo-app/assets/10965093/2e148fa3-6436-4747-9623-1b1aa5d2c2ae
+
