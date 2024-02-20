@@ -1,9 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  LinearTransition,
-} from 'react-native-reanimated';
 
 import colors from '../constants/colors';
 import { Todo } from '../services/todos';
@@ -23,21 +19,8 @@ const TodoListItem = ({
   isCompleted,
   isUpdating,
 }: TodoItemProps) => {
-  const listItemStyle = useAnimatedStyle(() => {
-    return {
-      width: '100%',
-      backgroundColor: colors.background,
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderTopWidth: 1,
-      borderColor: colors.border,
-      paddingHorizontal: 20,
-      paddingVertical: 15,
-    };
-  });
-
   return (
-    <Animated.View layout={LinearTransition} style={listItemStyle}>
+    <View style={styles.container}>
       <View style={styles.markCompletedContainer}>
         <CircularCompletedButton
           onPress={onMarkCompleted}
@@ -46,11 +29,21 @@ const TodoListItem = ({
         />
       </View>
       <Text style={styles.text}>{item.title}</Text>
-    </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    backgroundColor: colors.background,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
   text: {
     fontSize: 16,
     color: 'black',
