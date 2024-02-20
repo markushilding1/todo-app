@@ -31,13 +31,11 @@ exports[`button render renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "alignItems": "center",
       "backgroundColor": "#206795",
-      "borderColor": "#206795",
+      "borderColor": "#95ACAE",
       "borderRadius": 15,
-      "borderWidth": 1,
+      "borderWidth": 0,
       "height": 24,
-      "justifyContent": "center",
       "opacity": 1,
       "width": 24,
     }
